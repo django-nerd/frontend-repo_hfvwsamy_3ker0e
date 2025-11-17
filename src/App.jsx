@@ -10,23 +10,48 @@ import Comparison from './components/Comparison'
 import Integrations from './components/Integrations'
 import Pricing from './components/Pricing'
 import FinalCTA from './components/FinalCTA'
+import MotionSection from './components/MotionSection'
+import ScrollProgress from './components/ScrollProgress'
 
 function App() {
   return (
     <div className="min-h-screen bg-white">
+      <ScrollProgress />
       <Navbar />
       <main>
-        <Hero />
-        <WhatIs />
-        <Features />
-        <HowItWorks />
-        <Benefits />
-        <InlineCTA />
-        <Testimonials />
-        <Comparison />
-        <Integrations />
-        <Pricing />
-        <FinalCTA />
+        <MotionSection>
+          <Hero />
+        </MotionSection>
+        <MotionSection delay={0.05}>
+          <WhatIs />
+        </MotionSection>
+        <MotionSection delay={0.1}>
+          <Features />
+        </MotionSection>
+        <MotionSection delay={0.1}>
+          <HowItWorks />
+        </MotionSection>
+        <MotionSection delay={0.12}>
+          <Benefits />
+        </MotionSection>
+        <MotionSection delay={0.12}>
+          <InlineCTA />
+        </MotionSection>
+        <MotionSection delay={0.14}>
+          <Testimonials />
+        </MotionSection>
+        <MotionSection delay={0.14}>
+          <Comparison />
+        </MotionSection>
+        <MotionSection delay={0.16}>
+          <Integrations />
+        </MotionSection>
+        <MotionSection delay={0.16}>
+          <Pricing />
+        </MotionSection>
+        <MotionSection delay={0.18}>
+          <FinalCTA />
+        </MotionSection>
       </main>
       <footer className="py-10 border-t border-slate-200 bg-white">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500 text-sm">

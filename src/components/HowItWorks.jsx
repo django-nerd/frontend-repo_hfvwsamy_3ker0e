@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion'
+
 const steps = [
   {
     title: 'Introduce tu empresa',
@@ -22,15 +24,25 @@ export default function HowItWorks() {
           <p className="mt-3 text-slate-600">Tres pasos para transformar la manera en que analizas a tu competencia.</p>
         </div>
 
-        <div className="mt-12 grid md:grid-cols-3 gap-6">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
+          className="mt-12 grid md:grid-cols-3 gap-6"
+        >
           {steps.map((s, i) => (
-            <div key={s.title} className="relative rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
+            <motion.div key={s.title}
+              variants={{ hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="relative rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm"
+            >
               <div className="absolute -top-4 -left-4 h-10 w-10 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 text-white grid place-items-center font-bold shadow-md shadow-blue-700/30">{i+1}</div>
               <h3 className="mt-6 text-lg font-semibold text-slate-900">{s.title}</h3>
               <p className="mt-2 text-slate-600">{s.desc}</p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )

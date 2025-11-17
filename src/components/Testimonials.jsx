@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion'
+
 export default function Testimonials() {
   const items = [
     {
@@ -28,14 +30,25 @@ export default function Testimonials() {
           <p className="mt-3 text-slate-600">Historias reales de impacto directo en negocio.</p>
         </div>
 
-        <div className="mt-12 grid md:grid-cols-3 gap-6">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08 } } }}
+          className="mt-12 grid md:grid-cols-3 gap-6"
+        >
           {items.map((t) => (
-            <div key={t.name} className="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
+            <motion.div
+              key={t.name}
+              variants={{ hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm"
+            >
               <p className="text-slate-700">“{t.quote}”</p>
               <div className="mt-4 text-sm text-slate-600">{t.name} — {t.role} en {t.company}</div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )

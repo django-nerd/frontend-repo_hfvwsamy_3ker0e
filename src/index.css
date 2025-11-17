@@ -15,14 +15,19 @@
   html {
     font-family: var(--font-sans);
     font-feature-settings: "rlig" 1, "calt" 1;
+    scroll-behavior: smooth;
   }
 
   body {
     @apply antialiased;
   }
+
+  ::selection {
+    background: #2563eb33; /* blue-600/20 */
+  }
 }
 
-/* Custom utility classes for shadcn/ui patterns */
+/* Motion utility helpers */
 @layer utilities {
   .animate-in {
     animation-name: animateIn;
@@ -42,5 +47,13 @@
     --tw-exit-rotate: initial;
     --tw-exit-translate-x: initial;
     --tw-exit-translate-y: initial;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
   }
 }

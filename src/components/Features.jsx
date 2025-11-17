@@ -1,4 +1,5 @@
 import { MapPinned, LineChart, BellRing, Tags, ShieldCheck, Gauge, MessageCircle, FilePieChart, Sparkles } from 'lucide-react'
+import { motion } from 'framer-motion'
 
 const features = [
   {
@@ -66,18 +67,32 @@ export default function Features() {
           <p className="mt-3 text-slate-600">Todo lo que necesitas para saber siempre con quién compites y qué está haciendo tu competencia.</p>
         </div>
 
-        <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.06 } }
+          }}
+          className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
           {features.map(({ icon: Icon, title, desc, benefit }) => (
-            <div key={title} className="group relative rounded-2xl bg-white border border-slate-200 p-6 shadow-sm hover:shadow-lg transition-all">
+            <motion.div
+              key={title}
+              variants={{ hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              className="group relative rounded-2xl bg-white border border-slate-200 p-6 shadow-sm hover:shadow-lg transition-all"
+            >
               <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 text-white shadow-md shadow-blue-700/30">
                 <Icon className="h-6 w-6" />
               </div>
               <h3 className="mt-4 text-lg font-semibold text-slate-900">{title}</h3>
               <p className="mt-2 text-slate-600">{desc}</p>
               <p className="mt-3 text-sm text-blue-700 font-medium">{benefit}</p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )
